@@ -37,5 +37,5 @@ Feature: Introduction to cucumber part 3
     Then I see age "<age>" on feedback page
 
     Examples:
-      | name  | age | message                        |
-      | Dumbledore   | 79   | Thank you, Dumbledore, for your feedback!     |
+      | name  | age |
+      | Dumbledore   | 79   |

@@ -31,3 +31,39 @@ Feature: Introduction to cucumber part 4
       | Ann  | 5   | Hello, Ann, you are a kid    |
       | Bob  | 61  | Hello, Bob, you are an adult |
 
+    @task5map
+  Scenario: new scenario with map and without outline
+    Given I am on feedback page
+    When I enter age values:
+      | name | Tom |
+      | age  | 5   |
+      | genre  | male   |
+      And I click send on feedback page
+      Then I see name "Tom" on feedback page
+      Then I see age "5" on feedback page
+      And I see genre "male" on feedback page
+
+      @task5outline
+    Scenario Outline: new scenario with outline
+        Given I am on feedback page
+        When I enter age values:
+          | name | <name> |
+          | age  | <age>  |
+          | genre| <genre>|
+        And I click send on feedback page
+        Then I see name "<name>" on feedback page
+        Then I see age "<age>" on feedback page
+        And I see genre "<genre>" on feedback page
+        Examples:
+          | name | age | genre     |
+          | Ann | 5   | female    |
+          | Bob | 61  | male      |
+
+      # TODO - create Scenario  for 'Give us your feedback!' page
+  # URL: https://kristinek.github.io/site/tasks/provide_feedback
+  # Navigate to page
+  # Set Name, Age and Genre
+  # - All input MUST be done in single step
+  # - All input MUST use Examples for data
+  # - Step can use Map or Domain object
+  # Click "Send" button and verify that previous input is displayed in correct fields

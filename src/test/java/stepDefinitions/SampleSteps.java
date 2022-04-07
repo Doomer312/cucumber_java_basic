@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -201,5 +202,35 @@ public class SampleSteps {
 
     }
 
-}
+    //genre
+    @Then("^I see genre \"([^\"]*)\" on feedback page")
+    public void iSeeGenreOnFeedbackPage(String genre) throws Throwable{
+    assertEquals(genre, driver.findElement(By.id("gender")).getText());
+    }
+
+    //for  Sample4 one column to List
+
+    @When("^I select feedback languages$")
+    public void iSelectFeedbackLanguages(List<String> languages) throws Throwable {
+        for (String language : languages) {
+            driver.findElement(By.xpath("//input[@class='w3-check' and @value='" + language + "']")).click();
+        }
+    }
+
+    @Then("^I see languages \"([^\"]*)\" on feedback page$")
+    public void iCanSeeLanguagesOnFeedbackPage(String languages) throws Throwable {
+        assertEquals(languages, driver.findElement(By.id("language")).getText());
+    }
+
+    //for Sample5 maps
+
+    @When("^I enter age values:$")
+    public void iEnterAgeValues (Map<String, String> feedbackInput) throws Throwable {
+       if(feedbackInput.containsKey("name")) {
+           iEnterNameInFeedbackPage(feedbackInput.get("name"));
+       }
+        iEnterAgeInFeedbackPage(feedbackInput.get("age"));
+        driver.findElement(By.xpath("//input[@value='" + feedbackInput.get("genre") + "']")).click();
+    }
+    }
 

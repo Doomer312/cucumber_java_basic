@@ -21,3 +21,12 @@ Feature: Introduction to cucumber part 4
     And I click the result checkbox button
     Then message for checkboxes "You selected value(s): Option 2" is seen
 
+
+  @only_languages
+  Scenario: Feedback with only languages
+    Given I am on feedback page
+    When I select feedback languages
+      | English |
+      | Spanish |
+    And I click send on feedback page
+    Then I see languages "English,Spanish" on feedback page
